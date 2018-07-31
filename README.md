@@ -1,9 +1,26 @@
-Funktoren, Applikative und Monaden in Bildern
-=============================================
+# Funktoren, Applikative und Monaden in Bildern
 
-**Verfasst am 17. April 2013 von Aditya Bhargava**
+## Änderungshistorie
 
-Aktualisiert am 20. Mai 2013
+* Verfasst am 17. April 2013 von [Aditya Bhargava](https://github.com/egonSchiele)
+
+* Aktualisiert am 20. Mai 2013 von Aditya Bhargava
+
+* Ins deutsche [übersetzt](https://gist.github.com/egonSchiele/21f2651522453dfdac6ff1b4a3e60db8/revisions)
+ am 11. Jan 2017 von Aditya Bhargava
+ 
+* Aktualisiert am 01. Aug 2018 von [Fabian Beuke](https://github.com/madnight) (Inhaltsverzeichnis und Bilder)
+
+Original Artikel: http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html  
+
+## Inhaltsverzeichnis
+
+- [Funktoren](#funktoren)
+- [Applikative](#applikative)
+- [Monaden](#monaden)
+- [Zusammenfassung](#zusammenfassung)
+- [Weitere Übersetzungen](#weitere-%C3%9Cbersetzungen)
+
 
 Hier haben wir einen einfachen Wert: 
 
@@ -26,8 +43,8 @@ Wenn du jetzt eine Funktion auf einen solchen Wert anwendest, erhältst du **je 
 Wir werden gleich sehen, wie sich die Anwendung einer Funktion auf ein `Just a` von einem `Nothing` unterscheidet. Als erstes wollen wir über Funktoren sprechen!
 
 
-Funktoren
----------
+# Funktoren
+
 
 Ist ein Wert in einen Kontext eingepackt, kann man keine normale Funktion darauf anwenden: 
 
@@ -131,8 +148,8 @@ Funktionen sind also auch Funktoren!
 Wenn du `fmap` auf Funktionen anwendest, führst du also einfach Funktionskomposition durch!
 
 
-Applikative
------------
+# Applikative
+
 
 Applikative heben das Ganze auf eine neue Ebene. Bei Applikativen sind unsere Werte genauso in Kontexte eingepackt wie bei Funktoren:
 
@@ -182,8 +199,8 @@ Und hey! Es gibt eine Funktion namens `liftA2`, die dasselbe erledigt:
     Just 15
 
 
-Monaden
--------
+# Monaden
+
 
 Wie man etwas über Monaden erfährt:
 
@@ -294,8 +311,8 @@ Oh ja! Wie Plätze in der ersten Reihe der Monaden-Show! Haskell bietet uns auch
         contents <- readFile filename
         putStrLn contents
 
-Zusammenfassung
----------------
+# Zusammenfassung
+
 
   1. Funktoren sind Datentypen, die die Typenklasse `Functor` implementieren.
   2. Applikative sind Datentypen, die die Typenklasse `Applicative` implementieren.
@@ -311,3 +328,28 @@ Was unterscheidet die drei voneinander?
   * **Monade:** Wende mit Hilfe von `>>=` oder `liftM` eine Funktion, die einen eingepackten Wert zurück gibt, auf einen eingepackten Wert an.
   
 So, mein Freund (ich glaube, dass wir mittlerweile Freunde sind), ich glaube, wir stimmen beide darin überein, dass Monaden einfach und eine KLUGE IDEE(tm) sind. Nachdem du mit diesem Guide Durst bekommen hast, warum machst du dann nicht einen auf Mel Gibson und holst dir die ganze Flasche?! Schau dir mal LYAHs Abschnitt über Monaden an. Da gibt's noch eine ganze Menge, das ich weggelassen habe, weil Miran einen großartigen Job dabei macht, mit diesem Zeug in die Tiefe zu gehen.
+
+
+# Weitere Übersetzungen
+Andere Sprachen:
+
+*   [Chinese](http://jiyinyiyong.github.io/monads-in-pictures/)
+*   [Another Chinese translation](http://blog.forec.cn/2017/03/02/translation-adit-faamip/)
+*   [Chinese, Kotlin](https://hltj.me/kotlin/2017/08/25/kotlin-functor-applicative-monad-cn.html)
+*   [French](http://www.leonardmeyer.com/blog/2014/06/functors-applicatives-et-monads-en-images/)
+*   [Japanese](http://qiita.com/suin/items/0255f0637921dcdfe83b)
+*   [Korean](http://lazyswamp.tistory.com/entry/functorsapplicativesandmonadsinpictures)
+*   [Portuguese](https://medium.com/@julianoalves/functors-applicatives-e-monads-explicados-com-desenhos-2c45d5db7d25#.oxtev31qu)
+*   [Russian](http://habrahabr.ru/post/183150/)
+*   [Spanish](https://medium.com/@miguelsaddress/funtores-aplicativos-y-m%C3%B3nadas-en-im%C3%A1genes-21ab0e60fe23#.azxc90mox)
+*   [Turkish](http://rimbi.github.io/functors-applicatives-monads-in-pictures.html)
+*   [Vietnamese](http://zinh.github.io/haskell/2015/09/16/functors-applicatives-monads-in-pictures.html)
+
+Programmiersprachen:
+
+*   [Javascript](https://medium.com/@tzehsiang/javascript-functor-applicative-monads-in-pictures-b567c6415221#.rdwll124i)
+*   [Python](https://github.com/dbrattli/OSlash/wiki/Functors,-Applicatives,-And-Monads-In-Pictures)
+*   [Swift](http://www.mokacoding.com/blog/functor-applicative-monads-in-pictures)
+*   [Kotlin](https://hltj.me/kotlin/2017/08/25/kotlin-functor-applicative-monad.html). This author also translated this Kotlin version into [Chinese](https://hltj.me/kotlin/2017/08/25/kotlin-functor-applicative-monad-cn.html).
+*   [Kotlin (translated from the Swift translation)](https://medium.com/@aballano/kotlin-functors-applicatives-and-monads-in-pictures-part-1-3-c47a1b1ce251)
+*   [Elm](https://medium.com/@l.mugnaini/functors-applicatives-and-monads-in-pictures-784c2b5786f7)
