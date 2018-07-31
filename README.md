@@ -7,19 +7,19 @@ Aktualisiert am 20. Mai 2013
 
 Hier haben wir einen einfachen Wert: 
 
-`/imgs/functors/value.png`
+![](pictures/value.png)
 
 Außerdem wissen wir, wie wir eine Funktion auf diesen Wert anwenden können: 
 
-`/imgs/functors/value_apply.png`
+![](pictures/value_apply.png)
 
 Einfacher geht's nicht! Wir wollen das erweitern, indem wir festlegen, dass sich jeder Wert in einem Kontext befinden kann. Stell dir Kontexte fürs Erste als Päckchen vor, in die du Werte legen kannst: 
 
-`/imgs/functors/value_and_context.png`
+![](pictures/value_and_context.png)
 
 Wenn du jetzt eine Funktion auf einen solchen Wert anwendest, erhältst du **je nach Kontext** ein anderes Ergebnis. Genau auf diesen Gedanken basieren Applikative, Monaden, Pfeile usw. Für den `Maybe`-Datentypen sind zwei zugehörige Kontexte definiert: 
 
-`/imgs/functors/context.png`
+![](pictures/context.png)
 
     data Maybe a = Nothing | Just a
 
@@ -31,14 +31,14 @@ Funktoren
 
 Ist ein Wert in einen Kontext eingepackt, kann man keine normale Funktion darauf anwenden: 
 
-`http://adit.io/imgs/functors/no_fmap_ouch.png`
+![](pictures/no_fmap_ouch.png)
 
 An dieser Stelle kommt `fmap` ins Spiel. `fmap` kommt von der Straße, `fmap` ist ein Kontext-Hipster. `fmap` weiß, wie man Funktionen auf in einen Kontext eingepackte Werte anwendet. Stell dir zum Beispiel vor, du wolltest `(+3)` auf `Just 2` anwenden. Verwende hierfür `fmap`:
 
     > fmap (+3) (Just 2)
     Just 5
     
-`http://adit.io/imgs/functors/fmap_apply.png`
+![](fmap_apply.png)
 
 **Bäm!** `fmap` zeigt uns, wie man sowas macht! Aber woher weiß `fmap`, wie man die Funktion anwendet?
 
@@ -48,11 +48,11 @@ Jetzt ernsthaft: Was ist ein Funktor?
 
 `Functor` ist eine Typenklasse („typeclass“). Sie ist folgendermaßen definiert: 
 
-`/imgs/functors/functor_def.png`
+![](pictures/functor_def.png)
 
 Jeder x-beliebige Datentyp kann ein `Functor` sein, solange definiert ist, wie man `fmap` darauf anwendet. So funktioniert `fmap`: 
 
-`/imgs/functors/fmap_def.png`
+![](pictures/fmap_def.png)
 
 Wir können also das hier machen:
 
@@ -67,16 +67,16 @@ Und `fmap` wendet diese Funktion auf magische Weise an, weil `Maybe` ein Funktor
 
 Das hier geschieht hinter den Kulissen, wenn wir `fmap (+3) (Just 2)` schreiben:
 
-`/imgs/functors/fmap_just.png`
+![](pictures/fmap_just.png)
 
 So, und jetzt möchtest du `fmap` einfach mal darum bitten, `(+3)` auf `Nothing` anzuwenden?
 
-`/imgs/functors/fmap_nothing.png`
+![](pictures/fmap_nothing.png)
 
     > fmap (+3) Nothing
     Nothing
     
-`/imgs/functors/bill.png`
+![](pictures/bill.png)
 
 Genau wie Morpheus in Matrix weiß `fmap` einfach, was zu tun ist; wenn du mit `Nothing` anfängst, erhältst du `Nothing` zurück! `fmap` ist wie Zen. Nun ergibt es auch Sinn, dass es den `Maybe`-Datentypen gibt. Beispielsweise so arbeitet man mit einem Datensatz aus einer Datenbank in einer Sprache ohne `Maybe`:
 
@@ -97,7 +97,7 @@ Sollte `findPost` einen Post zurückliefern, erhalten wir den Titel mit `getPost
 
 Noch ein Beispiel: Was passiert, wenn du eine Funktion auf eine Liste anwendest?
 
-`/imgs/functors/fmap_list.png`
+![](pictures/fmap_list.png)
 
 Auch Listen sind Funktoren! So sieht die Definition aus:
 
@@ -110,11 +110,11 @@ Okay okay, ein letztes Beispiel: Was passiert, wenn du eine Funktion auf eine an
 
 So sieht eine Funktion aus:
 
-`/imgs/functors/function_with_value.png`
+![](pictures/function_with_value.png)
 
 So sieht eine Funktion aus, die auf eine andere Funktion angewendet worden ist:
 
-`/imgs/functors/fmap_function.png`
+![](pictures/fmap_function.png)
 
 Das Ergebnis ist einfach eine weitere Funktion!
 
@@ -136,15 +136,15 @@ Applikative
 
 Applikative heben das Ganze auf eine neue Ebene. Bei Applikativen sind unsere Werte genauso in Kontexte eingepackt wie bei Funktoren:
 
-`/imgs/functors/value_and_context.png`
+![](pictures/value_and_context.png)
 
 Aber dieses Mal sind unsere Funktionen ebenfalls in Kontexe eingepackt!
 
-`/imgs/functors/function_and_context.png`
+![](pictures/function_and_context.png)
 
 Hammer! Lassen wir das mal auf uns wirken. Applikative treiben keine Spielchen. In `Control.Applicative` ist `<*>` definiert, das weiß, wie man eine Funktion, die _in einen Kontext eingepackt ist_, auf einen Wert anwendet, der ebenfalls _in einen Kontext eingepackt ist:_
 
-`/imgs/functors/applicative_just.png`
+![](pictures/applicative_just.png)
 
 Zum Beispiel:
 
@@ -155,7 +155,7 @@ Die Verwendung von `<*>` führt zu interessanten Situationen. Zum Beispiel:
     > [(*2), (+3)] <*> [1, 2, 3]
     [2, 4, 6, 4, 5, 6]
     
-`/imgs/functors/applicative_list.png`
+![](pictures/applicative_list.png)
 
 Hier mal etwas, das man mit Applikativen anstellen kann, aber nicht mit Funktoren. Wie wendet man eine Funktion, die zwei Argumente annimmt, auf zwei eingepackte Werte an?
 
@@ -192,15 +192,15 @@ Wie man etwas über Monaden erfährt:
   
 Monaden fügen eine neue Wendung hinzu. Funktoren wenden Funktionen auf eingepackte Werte an:
 
-`/imgs/functors/fmap.png`
+![](pictures/fmap.png)
 
 Applikative wenden eingepackte Funktionen auf eingepackte Werte an:
 
-`/imgs/functors/applicative.png`
+![](pictures/applicative.png)
 
 Monaden wenden Funktionen, **die einen eingepackten Wert zurückliefern**, auf eingepackte Werte an. Monaden steht die Funktion `>>=` (sprich engl. „bind“) zur Verfügung, um das umzusetzen. Betrachten wir ein Beispiel. Unser gutes, altes `Maybe` ist eine Monade:
 
-`/imgs/functors/context.png`
+![](pictures/context.png)
 
 Nehmen wir an, bei `half` handele es sich um eine Funktion, die nur mit geraden Zahlen umgehen kann:
 
@@ -208,15 +208,15 @@ Nehmen wir an, bei `half` handele es sich um eine Funktion, die nur mit geraden 
                then Just (x `div` 2)
                else Nothing
 
-`/imgs/functors/half.png`
+![](pictures/half.png)
 
 Was passiert, wenn wir sie mit einem eingepackten Wert füttern?
 
-`/imgs/functors/half_ouch.png`
+![](pictures/half_ouch.png)
 
 Wir müssen `>>=` verwenden, um unseren eingepackten Wert in die Funktion zu schieben. Hier ein Foto von `>>=`:
 
-`/imgs/functors/plunger.jpg`
+![](pictures/plunger.jpg)
 
 Und so funktioniert es:
 
@@ -234,7 +234,7 @@ Was passiert darin? `Monad` ist eine weitere Typenklasse. Hier ein Teil der Defi
 
 Dabei ist `>>=`:
 
-`/imgs/functors/bind_def.png`
+![](pictures/bind_def.png)
 
 Also ist `Maybe` eine Monade:
 
@@ -244,46 +244,46 @@ Also ist `Maybe` eine Monade:
 
 Hier siehst du sie in Aktion mit `Just 3`!
 
-`/imgs/functors/monad_just.png`
+![](pictures/monad_just.png)
 
 Und wenn man `Nothing` übergibt, ist es sogar noch einfacher:
 
-`/imgs/functors/monad_nothing.png`
+`monad_nothing.png`
 
 Man kann diese Funktionsaufrufe auch verketten:
 
     > Just 20 >>= half >>= half >>= half
     Nothing
     
-`/imgs/functors/monad_chain.png`
+![](pictures/monad_chain.png)
 
-`http://adit.io/imgs/functors/whoa.png`
+![](pictures/whoa.png)
 
 Cool! Jetzt wissen wir also, dass `Maybe` ein `Functor`, ein `Applicative` und ein `Monad` ist. Nun wollen wir mit einem weiteren Beispiel weitermachen: der `IO`-Monade:
 
-`/imgs/functors/io.png`
+![](pictures/io.png)
 
 Genauer mit drei Funktionen. `getLine` benötigt keine Argumente und nimmt Benutzereingaben entgegen:
 
-`/imgs/functors/getLine.png`
+![](pictures/getLine.png)
 
     getLine :: IO String
 
 `readFile` benötigt eine Zeichenkette (einen Dateinamen) und gibt den Inhalt dieser Datei zurück:
 
-`http://adit.io/imgs/functors/readFile.png`
+![](pictures/readFile.png)
 
     readFile :: FilePath -> IO String
 
 `putStrLn` nimmt eine Zeichenkette an und gibt sie aus:
 
-`http://adit.io/imgs/functors/putStrLn.png`
+![](pictures/putStrLn.png)
 
     putStrLn :: String -> IO ()
 
 Alle drei Funktionen nehmen einen regulären oder gar keinen Wert an und geben einen eingepackten Wert zurück. Wir können sie alle mit Hilfe von `>>=` verketten!
 
-`/imgs/functors/monad_io.png`
+![](pictures/monad_io.png)
 
     getLine >>= readFile >>= putStrLn
 
@@ -304,7 +304,7 @@ Zusammenfassung
   
 Was unterscheidet die drei voneinander?
 
-`/imgs/functors/recap.png`
+![](pictures/recap.png)
 
   * **Funktor:** Wende mit Hilfe von `fmap` oder `<$>` eine Funktion auf einen eingepackten Wert an.
   * **Applikativ:** Wende mit Hilfe von `<*>` oder `liftA` eine eingepackte Funktion auf einen eingepackten Wert an.
