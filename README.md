@@ -247,7 +247,7 @@ Und so funktioniert es:
 Was passiert darin? `Monad` ist eine weitere Typenklasse. Hier ein Teil der Definition:
 
     class Monad m where
-        (>>=) :: m a -> m a -> (a -> m b) -> m b
+        (>>=) :: m a -> (a -> m b) -> m b
 
 Dabei ist `>>=`:
 
